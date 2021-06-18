@@ -19,9 +19,9 @@ void main() async {
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   }
   SmartechPlugin()
-      .handleDeeplinkAction((String link, Map<dynamic, dynamic> map) {
+      .handleDeeplinkAction((String? link, Map<dynamic, dynamic>? map) {
     if (Platform.isAndroid) {
-      if (link.isEmpty) {
+      if (link!.isEmpty) {
         return;
       }
       if (link.contains('http')) {
@@ -46,7 +46,7 @@ void main() async {
       showDialog(
           context: Globle().context,
           builder: (builder) => AlertDialog(
-                title: Text(link),
+                title: Text(link!),
                 actions: [
                   TextButton(
                       onPressed: () {
@@ -131,7 +131,7 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  Future<void> customHTMLCallback(Map<String, dynamic> payload) async {
+  Future<void> customHTMLCallback(Map<String, dynamic>? payload) async {
     print(payload);
   }
 
@@ -195,5 +195,5 @@ class Globle {
   }
 
   Globle._internal();
-  BuildContext context;
+  late BuildContext context;
 }
